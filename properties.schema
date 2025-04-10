@@ -1,306 +1,328 @@
 {
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-04/schema",
-  "id": "http://jsonschema.net",
-  "required": false,
-  "properties": {
-    "pluginLocations": {
-      "type": "object",
-      "required": true,
-      "properties": {
-        "config": {
-          "type": "object"
-        },
-        "course": {
-          "type": "object",
-          "properties": {
-            "_assessment": {
-              "type": "object",
-              "required": false,
-              "legend": "Assessment",
-              "properties": {
-                "_isPercentageBased": {
-                  "type": "boolean",
-                  "required": true,
-                  "default": true,
-                  "title": "Percentage based",
-                  "inputType": "Checkbox",
-                  "help": "Determines whether the values of the 'Pass mark' should be treated as a percentage (default) or as the raw score and correctness.",
-                  "validators": []
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "id": "http://jsonschema.net",
+    "required": false,
+    "properties": {
+        "pluginLocations": {
+            "type": "object",
+            "required": true,
+            "properties": {
+                "config": {
+                    "type": "object"
                 },
-                "_scoreToPass": {
-                  "type": "number",
-                  "required": false,
-                  "title": "Pass mark",
-                  "inputType": "Number",
-                  "default": 60,
-                  "help": "The minimum score required by the learner to pass the assessment or the minimum percentage score if 'Percentage based'.",
-                  "validators": ["number"]
-                },
-                "_correctToPass": {
-                  "type": "number",
-                  "required": false,
-                  "title": "Correct pass mark",
-                  "inputType": "Number",
-                  "default": 60,
-                  "help": "The minimum number of correct questions required by the learner to pass the assessment or the minimum percentage correct if 'Percentage based'.",
-                  "validators": ["number"]
-                }
-              }
-            }
-          }
-        },
-        "contentobject": {
-          "type": "object"
-        },
-        "article": {
-          "type": "object",
-          "properties": {
-            "_assessment": {
-              "type": "object",
-              "required": false,
-              "legend": "Assessment",
-              "properties": {
-                "_isEnabled": {
-                  "type": "boolean",
-                  "required": true,
-                  "title": "Enabled",
-                  "inputType": "Checkbox",
-                  "validators": []
-                },
-                "_id": {
-                  "type": "string",
-                  "required": true,
-                  "title": "Assessment Name",
-                  "default": "",
-                  "inputType": "Text",
-                  "validators": [],
-                  "help": "Unique name for the assessment. This is required by other plugins such as the 'Assessment Results' component to identify the assessment and display its variables."
-                },
-                "_attempts": {
-                  "type": "number",
-                  "required": false,
-                  "title": "Attempts Allowed",
-                  "inputType": "Number",
-                  "default": -1,
-                  "validators": ["number"],
-                  "help": "Controls the number of attempts the user is allowed to have on this assessment. Set to -1 (or 0) to allow infinite attempts."
-                },
-                "_isPercentageBased": {
-                  "type": "boolean",
-                  "required": true,
-                  "default": true,
-                  "title": "Percentage based",
-                  "inputType": "Checkbox",
-                  "help": "Determines whether the pass mark values should be treated as percentages (default) or as the raw score and correctness.",
-                  "validators": []
-                },
-                "_scoreToPass": {
-                  "type": "number",
-                  "required": false,
-                  "title": "Pass mark",
-                  "inputType": "Number",
-                  "default": 60,
-                  "help": "The minimum score required by the learner to pass the assessment or the minimum percentage score if 'Percentage based'.",
-                  "validators": ["number"]
-                },
-                "_correctToPass": {
-                  "type": "number",
-                  "required": false,
-                  "title": "Correct pass mark",
-                  "inputType": "Number",
-                  "default": 60,
-                  "help": "The minimum number of correct questions required by the learner to pass the assessment or the minimum percentage correct if 'Percentage based'.",
-                  "validators": ["number"]
-                },
-                "_includeInTotalScore": {
-                  "type": "boolean",
-                  "default": true,
-                  "title": "Include in Total Score",
-                  "inputType": "Checkbox",
-                  "help": "Determines if the score from this assessment should be sent to the LMS. The score sent is a percentage according to 'Assessment Weight'.",
-                  "validators": []
-                },
-                "_assessmentWeight": {
-                  "type": "number",
-                  "required": false,
-                  "title": "Assessment Weight",
-                  "inputType": "Number",
-                  "default": 1,
-                  "help": "If there are multiple assessments in the course, this value controls the proportion of the LMS score which is attributed to this assessment, i.e. 1 equals 100%, 0.5 is 50%, etc.",
-                  "validators": ["number"]
-                },
-                "_suppressMarking": {
-                  "type": "boolean",
-                  "required": true,
-                  "title": "Suppress Marking",
-                  "inputType": "Checkbox",
-                  "help": "Determines whether question marking should be delayed until completion of the assessment or until all attempts have been exhausted.",
-                  "validators": []
-                },
-                "_isResetOnRevisit": {
-                  "type": "boolean",
-                  "required": true,
-                  "default": false,
-                  "title": "Reset on Revisit",
-                  "inputType": "Checkbox",
-                  "help": "Controls whether the assessment should be reset automatically (up to the number of available attempts) when a user revisits the page.",
-                  "validators": []
-                },
-                "_allowResetIfPassed": {
-                  "type": "boolean",
-                  "required": true,
-                  "default": false,
-                  "title": "Allow retry once passed?",
-                  "inputType": "Checkbox",
-                  "help": "Controls whether the assessment may be reset after it has been passed (whilst there are attempts remaining).",
-                  "validators": []
-                },
-                "_scrollToOnReset": {
-                  "type": "boolean",
-                  "required": true,
-                  "default": false,
-                  "title": "Scroll to on reset?",
-                  "inputType": "Checkbox",
-                  "help": "Controls whether to scroll to the assessment after reset or to stay at the top of the assessment page.",
-                  "validators": []
-                },
-                "_randomisation": {
-                  "type": "object",
-                  "required": false,
-                  "title": "Randomised Blocks",
-                  "properties": {
-                    "_isEnabled": {
-                      "type": "boolean",
-                      "required": false,
-                      "title": "Enabled",
-                      "inputType": "Checkbox",
-                      "help": "If randomisation is enabled, a specified number of blocks will be displayed to the user in a random order.",
-                      "validators": []
-                    },
-                    "_blockCount": {
-                      "type": "number",
-                      "required": false,
-                      "default": -1,
-                      "title": "Block Count",
-                      "inputType": "Number",
-                      "validators": ["number"],
-                      "help": "The number of blocks to present to the learner. Set to -1 (or 0) to display all blocks."
+                "course": {
+                    "type": "object",
+                    "properties": {
+                        "_assessment": {
+                            "type": "object",
+                            "required": false,
+                            "legend": "Evaluare",
+                            "properties": {
+                                "_isPercentageBased": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": true,
+                                    "title": "Procent",
+                                    "inputType": "Checkbox",
+                                    "help": "Determină dacă valorile „Pass mark” trebuie tratate ca procent (implicit) sau ca punctaj brut și corectitudine.",
+                                    "validators": []
+                                },
+                                "_scoreToPass": {
+                                    "type": "number",
+                                    "required": false,
+                                    "title": "Puncte pentru trecere",
+                                    "inputType": "Number",
+                                    "default": 60,
+                                    "help": "Punctajul minim cerut de cursant pentru a trece evaluarea sau punctajul minim procentual dacă este „Procent bazat pe”.",
+                                    "validators": [
+                                        "number"
+                                    ]
+                                },
+                                "_correctToPass": {
+                                    "type": "number",
+                                    "required": false,
+                                    "title": "Punctaj corect de trecere",
+                                    "inputType": "Number",
+                                    "default": 60,
+                                    "help": "Numărul minim de întrebări corecte solicitate de cursant pentru a trece evaluarea sau procentul minim corect dacă este „bazat pe procentaj”.",
+                                    "validators": [
+                                        "number"
+                                    ]
+                                }
+                            }
+                        }
                     }
-                  }
                 },
-                "_banks": {
-                  "type": "object",
-                  "required": false,
-                  "title": "Question Banks",
-                  "properties": {
-                    "_isEnabled": {
-                      "type": "boolean",
-                      "required": false,
-                      "title": "Enabled",
-                      "inputType": "Checkbox",
-                      "help": "Enables associating blocks of question components with a 'bank', allowing questions to be grouped then rendered via the 'Split' property.",
-                      "validators": []
-                    },
-                    "_split": {
-                      "type": "string",
-                      "required": true,
-                      "title": "Split",
-                      "default": "",
-                      "inputType": "Text",
-                      "validators": [],
-                      "help": "This is a comma-separated list of numbers corresponding to the number of questions to be drawn from each question bank. The position of the number in the list corresponds to the 'Bank ID' assigned, e.g. \"3,2\" would display three questions from Bank 1 and two from Bank 2."
-                    },
-                    "_randomisation": {
-                      "type": "boolean",
-                      "required": false,
-                      "title": "Randomise Question Banks",
-                      "inputType": "Checkbox",
-                      "help": "Controls whether the questions will be displayed in a random order.",
-                      "validators": []
-                    }
-                  }
+                "contentobject": {
+                    "type": "object"
                 },
-                "_questions": {
-                  "type": "object",
-                  "required": false,
-                  "title": "Question Behaviour",
-                  "properties": {
-                    "_resetType": {
-                      "type": "string",
-                      "required": false,
-                      "enum": ["soft", "hard"],
-                      "default": "hard",
-                      "title": "Reset Type",
-                      "inputType": {
-                        "type": "Select",
-                        "options": ["soft", "hard"]
-                      },
-                      "validators": [],
-                      "help": "Determines whether the question will register as completed when reset. When assigned a value of 'soft', the learner may continue to interact with it, but the complete attribute remains set to true. When assigned 'hard', complete is set to false, and the learner will be forced to complete it again if it is reset. For 'soft', when using trickle, please set the trickle Completion Attribute to `_isInteractionComplete'."
-                    },
-                    "_canShowFeedback": {
-                      "type": "boolean",
-                      "required": false,
-                      "title": "Show Feedback",
-                      "inputType": "Checkbox",
-                      "default": false,
-                      "help": "Allows the user to view feedback on their answer.",
-                      "validators": []
-                    },
-                    "_canShowMarking": {
-                      "type": "boolean",
-                      "required": false,
-                      "title": "Show Marking",
-                      "inputType": "Checkbox",
-                      "default": false,
-                      "help": "Displays ticks and crosses on question completion.",
-                      "validators": []
-                    },
-                    "_canShowModelAnswer": {
-                      "type": "boolean",
-                      "required": false,
-                      "title": "Show Model Answer",
-                      "inputType": "Checkbox",
-                      "default": false,
-                      "help": "Allows the user to view the 'model answer' should they answer the question incorrectly.",
-                      "validators": []
+                "article": {
+                    "type": "object",
+                    "properties": {
+                        "_assessment": {
+                            "type": "object",
+                            "required": false,
+                            "legend": "Evaluare",
+                            "properties": {
+                                "_isEnabled": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "title": "Activat",
+                                    "inputType": "Checkbox",
+                                    "validators": []
+                                },
+                                "_id": {
+                                    "type": "string",
+                                    "required": true,
+                                    "title": "Denumire evaluare",
+                                    "default": "",
+                                    "inputType": "Text",
+                                    "validators": [],
+                                    "help": "Denumire unică pentru evaluare. Acest lucru este cerut de alte plugin-uri, cum ar fi componenta „Rezultate evaluare”, pentru a identifica evaluarea și a afișa variabilele acesteia."
+                                },
+                                "_attempts": {
+                                    "type": "number",
+                                    "required": false,
+                                    "title": "Încercări permise",
+                                    "inputType": "Number",
+                                    "default": -1,
+                                    "validators": [
+                                        "number"
+                                    ],
+                                    "help": "Controlează numărul de încercări pe care utilizatorul le poate avea la această evaluare. Setați la -1 (sau 0) pentru a permite încercări infinite."
+                                },
+                                "_isPercentageBased": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": true,
+                                    "title": "Procent",
+                                    "inputType": "Checkbox",
+                                    "help": "Determină dacă valorile marcajului de trecere trebuie tratate ca procente (implicit) sau ca punctaj brut și corectitudine.",
+                                    "validators": []
+                                },
+                                "_scoreToPass": {
+                                    "type": "number",
+                                    "required": false,
+                                    "title": "Puncte pentru trecere",
+                                    "inputType": "Number",
+                                    "default": 60,
+                                    "help": "Punctajul minim cerut de cursant pentru a trece evaluarea sau punctajul minim procentual dacă este „Procent bazat pe”.",
+                                    "validators": [
+                                        "number"
+                                    ]
+                                },
+                                "_correctToPass": {
+                                    "type": "number",
+                                    "required": false,
+                                    "title": "Punctaj corect de trecere",
+                                    "inputType": "Number",
+                                    "default": 60,
+                                    "help": "Numărul minim de întrebări corecte solicitate de cursant pentru a trece evaluarea sau procentul minim corect dacă este „bazat pe procentaj”.",
+                                    "validators": [
+                                        "number"
+                                    ]
+                                },
+                                "_includeInTotalScore": {
+                                    "type": "boolean",
+                                    "default": true,
+                                    "title": "Include în punctajul total",
+                                    "inputType": "Checkbox",
+                                    "help": "Determină dacă punctajul din această evaluare trebuie trimis către LMS. Punctajul trimis este un procent în funcție de „Ponderea evaluării”.",
+                                    "validators": []
+                                },
+                                "_assessmentWeight": {
+                                    "type": "number",
+                                    "required": false,
+                                    "title": "Pondere de evaluare",
+                                    "inputType": "Number",
+                                    "default": 1,
+                                    "help": "Dacă există mai multe evaluări în curs, această valoare controlează proporția scorului LMS care este atribuită acestei evaluări, adică 1 este egal cu 100%, 0,5 este 50% etc.",
+                                    "validators": [
+                                        "number"
+                                    ]
+                                },
+                                "_suppressMarking": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "title": "Suprimați marcajul",
+                                    "inputType": "Checkbox",
+                                    "help": "Stabilește dacă marcarea întrebării trebuie amânată până la finalizarea evaluării sau până când toate încercările au fost epuizate.",
+                                    "validators": []
+                                },
+                                "_isResetOnRevisit": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": false,
+                                    "title": "Resetare la revizuire",
+                                    "inputType": "Checkbox",
+                                    "help": "Controlează dacă evaluarea trebuie resetată automat (până la numărul de încercări disponibile) atunci când un utilizator revizitează pagina.",
+                                    "validators": []
+                                },
+                                "_allowResetIfPassed": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": false,
+                                    "title": "Permiteți reîncercarea după ce a trecut?",
+                                    "inputType": "Checkbox",
+                                    "help": "Controlează dacă evaluarea poate fi resetată după ce a fost trecută (în timp ce există încercări rămase).",
+                                    "validators": []
+                                },
+                                "_scrollToOnReset": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": false,
+                                    "title": "Derulați până la la resetare?",
+                                    "inputType": "Checkbox",
+                                    "help": "Controlează dacă să deruleze până la evaluare după resetare sau să rămână în partea de sus a paginii de evaluare.",
+                                    "validators": []
+                                },
+                                "_randomisation": {
+                                    "type": "object",
+                                    "required": false,
+                                    "title": "Blocuri randomizate",
+                                    "properties": {
+                                        "_isEnabled": {
+                                            "type": "boolean",
+                                            "required": false,
+                                            "title": "Activat",
+                                            "inputType": "Checkbox",
+                                            "help": "Dacă randomizarea este activată, un număr specificat de blocuri va fi afișat utilizatorului într-o ordine aleatorie.",
+                                            "validators": []
+                                        },
+                                        "_blockCount": {
+                                            "type": "number",
+                                            "required": false,
+                                            "default": -1,
+                                            "title": "Număr de blocuri",
+                                            "inputType": "Number",
+                                            "validators": [
+                                                "number"
+                                            ],
+                                            "help": "Numărul de blocuri care trebuie prezentate cursantului. Setați la -1 (sau 0) pentru a afișa toate blocurile."
+                                        }
+                                    }
+                                },
+                                "_banks": {
+                                    "type": "object",
+                                    "required": false,
+                                    "title": "Bănci de întrebări",
+                                    "properties": {
+                                        "_isEnabled": {
+                                            "type": "boolean",
+                                            "required": false,
+                                            "title": "Activat",
+                                            "inputType": "Checkbox",
+                                            "help": "Permite asocierea blocurilor de componente ale întrebării cu o „bancă”, permițând gruparea întrebărilor, apoi redarea prin intermediul proprietății „Split”.",
+                                            "validators": []
+                                        },
+                                        "_split": {
+                                            "type": "string",
+                                            "required": true,
+                                            "title": "Divizat",
+                                            "default": "",
+                                            "inputType": "Text",
+                                            "validators": [],
+                                            "help": "Aceasta este o listă de numere separate prin virgulă care corespunde numărului de întrebări care trebuie extrase din fiecare bancă de întrebări. Poziția numărului din listă corespunde „ID-ului bancar” atribuit, de exemplu „3,2” ar afișa trei întrebări din Banca 1 și două din Banca 2."
+                                        },
+                                        "_randomisation": {
+                                            "type": "boolean",
+                                            "required": false,
+                                            "title": "Randomizați băncile de întrebări",
+                                            "inputType": "Checkbox",
+                                            "help": "Controlează dacă întrebările vor fi afișate într-o ordine aleatorie.",
+                                            "validators": []
+                                        }
+                                    }
+                                },
+                                "_questions": {
+                                    "type": "object",
+                                    "required": false,
+                                    "title": "Comportamentul întrebării",
+                                    "properties": {
+                                        "_resetType": {
+                                            "type": "string",
+                                            "required": false,
+                                            "enum": [
+                                                "soft",
+                                                "hard"
+                                            ],
+                                            "default": "hard",
+                                            "title": "Resetare tip",
+                                            "inputType": {
+                                                "type": "Select",
+                                                "options": [
+                                                    "soft",
+                                                    "hard"
+                                                ]
+                                            },
+                                            "validators": [],
+                                            "help": "Stabilește dacă întrebarea se va înregistra ca finalizată la resetare. Când i se atribuie o valoare „soft”, cursantul poate continua să interacționeze cu acesta, dar atributul complet rămâne setat la True. Când este atribuit „hard”, complete este setat la false, iar cursantul va fi obligat să îl finalizeze din nou dacă este resetat. Pentru „soft”, atunci când utilizați trickle, setați atributul de finalizare trickle la „_isInteractionComplete”."
+                                        },
+                                        "_canShowFeedback": {
+                                            "type": "boolean",
+                                            "required": false,
+                                            "title": "Afișați feedback",
+                                            "inputType": "Checkbox",
+                                            "default": false,
+                                            "help": "Permite utilizatorului să vizualizeze feedback-ul cu privire la răspunsul său.",
+                                            "validators": []
+                                        },
+                                        "_canShowMarking": {
+                                            "type": "boolean",
+                                            "required": false,
+                                            "title": "Afișare marcaj",
+                                            "inputType": "Checkbox",
+                                            "default": false,
+                                            "help": "Afișează căpușe și încrucișări la finalizarea întrebării.",
+                                            "validators": []
+                                        },
+                                        "_canShowModelAnswer": {
+                                            "type": "boolean",
+                                            "required": false,
+                                            "title": "Afișare răspuns model",
+                                            "inputType": "Checkbox",
+                                            "default": false,
+                                            "help": "Permite utilizatorului să vizualizeze „răspunsul model” în cazul în care răspunde incorect la întrebare.",
+                                            "validators": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                  }
+                },
+                "block": {
+                    "type": "object",
+                    "properties": {
+                        "_assessment": {
+                            "type": "object",
+                            "required": false,
+                            "legend": "Evaluare",
+                            "properties": {
+                                "_quizBankID": {
+                                    "type": "number",
+                                    "required": false,
+                                    "title": "ID bancar",
+                                    "inputType": "Number",
+                                    "default": 1,
+                                    "help": "Folosit pentru a grupa blocurile de componente ale întrebării în băncile asociate. Acest lucru funcționează împreună cu proprietatea „Split” atunci când sunt utilizate bănci de întrebări.",
+                                    "validators": [
+                                        "number"
+                                    ],
+                                    "editorAttrs": {
+                                        "step": 1,
+                                        "min": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "component": {
+                    "type": "object"
                 }
-              }
             }
-          }
-        },
-        "block": {
-          "type": "object",
-          "properties": {
-            "_assessment": {
-              "type": "object",
-              "required": false,
-              "legend": "Assessment",
-              "properties": {
-                "_quizBankID": {
-                  "type": "number",
-                  "required": false,
-                  "title": "Bank ID",
-                  "inputType": "Number",
-                  "default": 1,
-                  "help": "Used to group blocks of question components into associated banks. This works in conjunction with the 'Split' property when question banks are in use.",
-                  "validators": ["number"],
-                  "editorAttrs": {
-                    "step": 1,
-                    "min": 1
-                  }
-                }
-              }
-            }
-          }
-        },
-        "component": {
-          "type": "object"
         }
-      }
     }
-  }
 }
